@@ -2,7 +2,7 @@ local g = vim.g
 local map = vim.keymap.set
 
 g.mapleader = " "
-g.maplocalleader = " "
+g.maplocalleader = ","
 
 -- Exit insert mode
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
@@ -19,8 +19,8 @@ map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the below window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the above window" })
 
 -- split window
-map("n", "<leader>wv", ":vsplit<CR>", { desc = "[W]indow split [V]ertical", silent = true })
-map("n", "<leader>wh", ":split<CR>", { desc = "[W]indow split [Herizontal", silent = true })
+map("n", "<leader>sv", ":vsplit<CR>", { desc = "[W]indow split [V]ertical", silent = true })
+map("n", "<leader>sh", ":split<CR>", { desc = "[W]indow split [Herizontal", silent = true })
 
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "Indent left in visual mode" })
@@ -61,8 +61,8 @@ map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- Move to start/end of line
-map({ "n", "x", "o" }, "H", "^")
-map({ "n", "x", "o" }, "L", "g_")
+map({ "n", "x", "o" }, "_", "^")
+map({ "n", "x", "o" }, "$", "g_")
 
 -- Navigate buffers
 map("n", "<Right>", ":bnext<CR>", { silent = true })
@@ -80,8 +80,8 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All", silent = true })
 
 -- highlights under cursor
--- map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" }
--- map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll upwards (center)" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll downwards (center)" })
@@ -96,13 +96,3 @@ end)
 
 -- Undo tree
 map("n", "<leader>ut", ":UndotreeToggle<CR>", { desc = "Undo Tree", silent = true })
-
--- Toggle terminal
-map("t", "<ESC><ESC>", "<C-\\><C-n>", { desc = "Escapre terminal mode" })
-map("t", "<C-x>", "<C-\\><C-n>", { desc = "Exit Terminal" })
-map("n", "<C-/>", '<cmd>exe v:count1 . "ToggleTerm"<CR>', { desc = "Toggle Terminal", silent = true })
-map("i", "<C-/>", '<cmd>exe v:count1 . "ToggleTerm"<CR>', { desc = "Toggle Terminal", silent = true })
-map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Move to left terminal", noremap = true })
-map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Move to right terminal", noremap = true })
-map("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Move to bottom terminal", noremap = true })
-map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Move to top terminal", noremap = true })

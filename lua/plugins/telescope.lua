@@ -18,22 +18,31 @@ return {
 			-- get access to telescopes built in functions
 			local builtin = require("telescope.builtin")
 
-			-- set a vim motion to <Space> + s + f to search for files by their names
+			-- set a vim motion to <Space> + f + f to search for files by their names
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-			-- set a vim motion to <Space> + s + g to search for files based on the text inside of them
+			-- set a vim motion to <Space> + f + g to search for files based on the text inside of them
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
-			-- set a vim motion to <Space> + s + d to search for Code Diagnostics in the current project
+			-- set a vim motion to <Space> + f + s to serach for symbols in the current project
+			vim.keymap.set("n", "<leader>fs", builtin.lsp_workspace_symbols, { desc = "[F]ind [S]ymbols" })
+			-- set a vim motion to <Space> + f + d to search for Code Diagnostics in the current project
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
-			-- set a vim motion to <Space> + s + r to resume the previous search
+			-- set a vim motion to <Space> + f + r to resume the previous search
 			vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]inder [R]esume" })
-			-- set a vim motion to <Space> + s + . to search for Recent Files
+			-- set a vim motion to <Space> + f + . to search for Recent Files
 			vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-			-- set a vim motion to <Space> + s + b to search Open Buffers
+			-- set a vim motion to <Space> + f + b to search Open Buffers
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind Existing [B]uffers" })
 			vim.keymap.set("n", "<leader>fc", builtin.colorscheme, { desc = "[F]ind [C]olorscheme" })
 			vim.keymap.set("n", "<leader>fw", function()
 				require("telescope.builtin").live_grep({ default_text = vim.fn.expand("<cword>") })
 			end, { desc = "[F]ind [W]ord" })
+			-- Neoclip
+			vim.keymap.set(
+				"n",
+				"<leader>fp",
+				"<cmd>Telescope neoclip<CR>",
+				{ desc = "Paste from clipboard", silent = true }
+			)
 		end,
 	},
 	{
@@ -62,7 +71,7 @@ return {
 					prompt_prefix = icons.ui.Telescope .. " ",
 					selection_caret = icons.ui.Forward .. " ",
 					entry_prefix = "   ",
-					initial_mode = "insert",
+					initial_mode = "normal",
 					selection_strategy = "reset",
 					path_display = { "smart" },
 					color_devicons = true,
@@ -83,15 +92,14 @@ return {
 					i = {
 						["<C-n>"] = actions.cycle_history_next,
 						["<C-p>"] = actions.cycle_history_prev,
-
 						["<C-j>"] = actions.move_selection_next,
+						["<c-w>"] = actions.close,
 						["<C-k>"] = actions.move_selection_previous,
 					},
 					n = {
 						["<esc>"] = actions.close,
 						["j"] = actions.move_selection_next,
 						["k"] = actions.move_selection_previous,
-						["q"] = actions.close,
 					},
 				},
 				pickers = {

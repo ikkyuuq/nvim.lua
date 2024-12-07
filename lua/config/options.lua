@@ -4,8 +4,9 @@ opt.number = true -- display line numbers
 opt.relativenumber = true -- display relative line numbers
 opt.numberwidth = 2 -- set width of line number columns
 opt.signcolumn = "yes" -- always show sign column
+opt.colorcolumn = "80" -- set color column to 80 characters
 opt.wrap = false -- display lines as signle line
-opt.scrolloff = 13 -- number of lines to keeep above/below cursor
+opt.scrolloff = 10 -- number of lines to keeep above/below cursor
 opt.sidescrolloff = 8 -- number of column to keep the left/right of cursor
 
 -- Tab spacing / behavior
@@ -35,7 +36,7 @@ opt.showmode = false -- hide mode display
 opt.splitbelow = true -- force horizontal splits below current window
 opt.splitright = true -- force verical splits right of current window
 opt.termguicolors = true -- enable term GUI colors
-opt.timeoutlen = 700 -- set timeout for mapped sequences
+opt.timeoutlen = 700 -- set timeout for testped sequences
 opt.undofile = true -- enable persistent undo
 opt.updatetime = 100 -- set faster completion
 opt.writebackup = false -- prevent editing of files edited elsewhere

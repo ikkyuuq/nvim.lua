@@ -19,7 +19,7 @@ return {
 			styles = {
 				bold = true,
 				italic = true,
-				transparency = true,
+				transparency = false,
 			},
 
 			groups = {
@@ -64,6 +64,7 @@ return {
 			highlight_groups = {
 				-- Comment = { fg = "foam" },
 				-- VertSplit = { fg = "muted", bg = "muted" },
+				BlinkCmpMenu = { fg = "iris", bg = "surface" },
 			},
 
 			before_highlight = function(group, highlight, palette)
